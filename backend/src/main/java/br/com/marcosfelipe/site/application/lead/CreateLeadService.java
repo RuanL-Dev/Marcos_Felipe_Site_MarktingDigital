@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class CreateLeadService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CreateLeadService.class);
+    private static final String CONSENT_TEXT_VERSION = "2026-04-20-v1";
+    private static final String PRIVACY_POLICY_VERSION = "2026-04-20-v1";
 
     private final LeadRepository leadRepository;
 
@@ -24,7 +26,9 @@ public class CreateLeadService {
             command.firstName().trim(),
             command.lastName().trim(),
             command.email().trim().toLowerCase(),
-            command.phone().trim()
+            command.phone().trim(),
+            CONSENT_TEXT_VERSION,
+            PRIVACY_POLICY_VERSION
         );
 
         Lead savedLead = leadRepository.save(lead);

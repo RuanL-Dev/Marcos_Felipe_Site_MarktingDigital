@@ -39,6 +39,8 @@ class CreateLeadServiceTest {
         verify(leadRepository).save(captor.capture());
 
         assertEquals("teste@email.com", captor.getValue().getEmail());
+        assertEquals("2026-04-20-v1", captor.getValue().getConsentTextVersion());
+        assertEquals("2026-04-20-v1", captor.getValue().getPrivacyPolicyVersion());
         assertNotNull(result.id());
         assertEquals("Lead cadastrado com sucesso.", result.message());
     }

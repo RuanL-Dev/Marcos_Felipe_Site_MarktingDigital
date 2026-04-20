@@ -29,23 +29,44 @@ public class Lead {
     @Column(nullable = false, length = 30)
     private String phone;
 
+    @Column(name = "consent_text_version", nullable = false, length = 40)
+    private String consentTextVersion;
+
+    @Column(name = "privacy_policy_version", nullable = false, length = 40)
+    private String privacyPolicyVersion;
+
+    @Column(name = "consent_given_at", nullable = false)
+    private LocalDateTime consentGivenAt;
+
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
     protected Lead() {
     }
 
-    public Lead(String firstName, String lastName, String email, String phone) {
+    public Lead(
+        String firstName,
+        String lastName,
+        String email,
+        String phone,
+        String consentTextVersion,
+        String privacyPolicyVersion
+    ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
+        this.consentTextVersion = consentTextVersion;
+        this.privacyPolicyVersion = privacyPolicyVersion;
     }
 
     @PrePersist
     public void prePersist() {
         if (id == null) {
             id = UUID.randomUUID().toString();
+        }
+        if (consentGivenAt == null) {
+            consentGivenAt = LocalDateTime.now();
         }
         if (createdAt == null) {
             createdAt = LocalDateTime.now();
@@ -70,6 +91,18 @@ public class Lead {
 
     public String getPhone() {
         return phone;
+    }
+
+    public String getConsentTextVersion() {
+        return consentTextVersion;
+    }
+
+    public String getPrivacyPolicyVersion() {
+        return privacyPolicyVersion;
+    }
+
+    public LocalDateTime getConsentGivenAt() {
+        return consentGivenAt;
     }
 
     public LocalDateTime getCreatedAt() {
