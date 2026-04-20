@@ -6,7 +6,7 @@ O projeto saiu da fase exclusivamente documental e agora possui uma base executa
 
 Estrutura implementada:
 
-- `frontend/` em `Next.js` com migracao em andamento para `TypeScript`
+- `frontend/` em `Next.js` com `TypeScript` e `Tailwind CSS v4`
 - `backend/` em `Spring Boot`
 - `docker-compose.yml` para execucao local integrada
 - `docs/` com contexto e ADRs atualizados
@@ -60,7 +60,12 @@ Validacoes executadas:
 - configuracao por ambiente com `.env.example` na raiz e no frontend
 - `Java 17` adotado no backend por compatibilidade local e perfil LTS
 - `Next.js 16.2.4` adotado no frontend para evitar vulnerabilidade conhecida nas versoes anteriores utilizadas nesta implementacao
-- migracao do frontend de `.js` para `.ts/.tsx` iniciada para padronizar tipagem e aumentar reaproveitamento de componentes
+- migracao do frontend de `.js` para `.ts/.tsx` concluida para padronizar tipagem e aumentar reaproveitamento de componentes
+- `Tailwind CSS v4` adotado no frontend com `@tailwindcss/postcss`
+- links publicos de `WhatsApp` e `Instagram` passaram a ser lidos por variaveis publicas de ambiente
+- o backend passou a persistir metadados minimos de consentimento por submissao do formulario
+- o backend passou a depender explicitamente de `flyway-database-postgresql` para compatibilidade com `PostgreSQL 16`
+- a home passou a incorporar ativos visuais reais priorizados pela curadoria UX: imagem de evento no hero, imagem de evento como apoio institucional e marca no header/footer
 
 ## Decisoes em aberto ou revistas
 
@@ -81,12 +86,12 @@ Validacoes executadas:
 ### Critico
 
 1. Ainda nao foi validado o fluxo completo `frontend -> backend -> PostgreSQL` em runtime integrado.
-2. Os links de contato publico ainda estao com valores placeholder.
+2. Os links de contato publico dependem agora de configuracao por variaveis de ambiente antes de publicacao.
 
 ### Alto
 
 1. Ainda nao ha execucao comprovada via `docker-compose`.
-2. Ainda nao ha verificacao manual do consentimento e do comportamento do formulario contra uma API rodando.
+2. Ainda nao ha verificacao manual do consentimento e do comportamento do formulario contra uma API rodando apos a persistencia dos novos metadados.
 3. Ainda nao existe teste de integracao do endpoint com banco real.
 
 ### Medio
@@ -256,3 +261,13 @@ O proximo ciclo recomendado e **estabilizacao do MVP implementado**, com foco em
 - configurar contatos oficiais
 - revisar comportamento do formulario em runtime
 - preparar a base para publicacao inicial sem ampliar escopo
+
+## Plano de trabalho posterior para curadoria de ativos
+
+1. Converter os melhores `HEIC` para `JPG/WebP`.
+2. Exportar os melhores `DNG` para formatos web.
+3. Gerar thumbnails dos arquivos `MOV` e fazer triagem visual.
+4. Fechar uma curadoria final limitada a:
+   - `1` imagem para hero
+   - `3` a `6` itens de portfolio
+   - `1` a `2` videos curtos realmente fortes

@@ -53,7 +53,7 @@ Modulos principais:
 - `sections`: secoes da home e paginas comerciais
 - `features/leads`: formulario, validacao client-side basica e integracao com API
 - `lib`: utilitarios, config publica e cliente HTTP
-- `styles`: tokens, temas e estilos globais
+- `app/globals.css`: importacao global do Tailwind CSS v4 e tokens visuais da aplicacao
 
 Responsabilidades:
 
@@ -131,22 +131,21 @@ Dependencias permitidas:
 │  └─ context/
 ├─ frontend/
 │  ├─ app/
-│  │  ├─ layout.js
-│  │  ├─ page.js
-│  │  ├─ politica-de-privacidade/
-│  │  └─ servicos/
+│  │  ├─ layout.tsx
+│  │  ├─ page.tsx
+│  │  ├─ globals.css
+│  │  └─ politica-de-privacidade/
 │  ├─ components/
 │  ├─ sections/
 │  ├─ features/
 │  │  └─ leads/
-│  │     ├─ components/
-│  │     ├─ services/
-│  │     └─ schemas/
+│  │     └─ components/
 │  ├─ lib/
 │  ├─ public/
-│  ├─ styles/
+│  ├─ types/
 │  ├─ biome.json
 │  ├─ package.json
+│  ├─ postcss.config.mjs
 │  └─ Dockerfile
 ├─ backend/
 │  ├─ src/
@@ -219,13 +218,15 @@ Erros esperados:
 - `email`
 - `phone`
 - `createdAt`
+- `consentTextVersion`
+- `privacyPolicyVersion`
+- `consentGivenAt`
 
 Campos opcionais futuros, nao obrigatorios na V1:
 
 - `source`
 - `campaign`
 - `notes`
-- `consentVersion`
 - `ipHash`
 
 Relacionamentos:
