@@ -1,3 +1,4 @@
+import { ActionLink } from "@/components/ui/action-link";
 import { siteConfig } from "@/lib/site";
 
 export function HeroSection() {
@@ -8,18 +9,18 @@ export function HeroSection() {
           <span className="eyebrow">Presenca visual com foco em conversao</span>
           <h1>Projetos que valorizam marcas, eventos e experiencias.</h1>
           <p>
-            Marcos Felipe atua com decoracao de eventos, material grafico e design
-            grafico para transformar ideias em apresentacoes mais fortes, mais claras e
-            mais memoraveis.
+            Marcos Felipe atua com decoracao de eventos, material grafico e
+            design grafico para transformar ideias em apresentacoes mais fortes,
+            mais claras e mais memoraveis.
           </p>
 
           <div className="hero-actions">
-            <a className="button-primary" href={siteConfig.whatsappUrl} target="_blank" rel="noreferrer">
+            <ActionLink external href={siteConfig.whatsappUrl}>
               Solicitar atendimento
-            </a>
-            <a className="button-secondary" href="#portfolio">
+            </ActionLink>
+            <ActionLink href="#portfolio" variant="secondary">
               Ver portfolio
-            </a>
+            </ActionLink>
           </div>
         </div>
 
@@ -27,8 +28,9 @@ export function HeroSection() {
           <div>
             <span className="eyebrow">V1 enxuta, comercial e direta</span>
             <p className="support-text">
-              O site foi pensado para apresentar poucos trabalhos fortes, explicar os
-              servicos com objetividade e conduzir o visitante ao contato.
+              O site foi pensado para apresentar poucos trabalhos fortes,
+              explicar os servicos com objetividade e conduzir o visitante ao
+              contato.
             </p>
           </div>
 

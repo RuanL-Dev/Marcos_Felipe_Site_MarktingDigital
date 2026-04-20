@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import { createLead } from "@/lib/api";
+import { SectionHeader } from "@/components/ui/section-header";
+import type { LeadPayload } from "@/types/site";
 
-const initialState = {
+const initialState: LeadPayload = {
   firstName: "",
   lastName: "",
   email: "",
@@ -11,17 +13,28 @@ const initialState = {
   honeypot: "",
 };
 
+interface FormStatus {
+  type: "idle" | "success" | "error";
+  message: string;
+}
+
 export function LeadForm() {
-  const [formData, setFormData] = useState(initialState);
-  const [status, setStatus] = useState({ type: "idle", message: "" });
+  const [formData, setFormData] = useState<LeadPayload>(initialState);
+  const [status, setStatus] = useState<FormStatus>({
+    type: "idle",
+    message: "",
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function handleChange(event) {
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
-    setFormData((current) => ({ ...current, [name]: value }));
+    setFormData((current) => ({
+      ...current,
+      [name]: value,
+    }));
   }
 
-  async function handleSubmit(event) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setIsSubmitting(true);
     setStatus({ type: "idle", message: "" });
@@ -31,12 +44,16 @@ export function LeadForm() {
       setFormData(initialState);
       setStatus({
         type: "success",
-        message: "Seu contato foi enviado com sucesso. Em breve voce recebe retorno.",
+        message:
+          "Seu contato foi enviado com sucesso. Em breve voce recebe retorno.",
       });
     } catch (error) {
       setStatus({
         type: "error",
-        message: error.message || "Nao foi possivel enviar o formulario.",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Nao foi possivel enviar o formulario.",
       });
     } finally {
       setIsSubmitting(false);
@@ -45,14 +62,11 @@ export function LeadForm() {
 
   return (
     <div className="form-shell" id="contato">
-      <div className="section-heading">
-        <span className="eyebrow">Formulario de leads</span>
-        <h2>Prefere deixar seu contato?</h2>
-        <p>
-          Preencha os dados abaixo para que o atendimento comercial possa retornar
-          com mais contexto e agilidade.
-        </p>
-      </div>
+      <SectionHeader
+        eyebrow="Formulario de leads"
+        title="Prefere deixar seu contato?"
+        description="Preencha os dados abaixo para que o atendimento comercial possa retornar com mais contexto e agilidade."
+      />
 
       <form onSubmit={handleSubmit}>
         <div className="field-grid">
@@ -61,10 +75,10 @@ export function LeadForm() {
             <input
               id="firstName"
               name="firstName"
-              type="text"
-              value={formData.firstName}
               onChange={handleChange}
               required
+              type="text"
+              value={formData.firstName}
             />
           </div>
 
@@ -73,10 +87,10 @@ export function LeadForm() {
             <input
               id="lastName"
               name="lastName"
-              type="text"
-              value={formData.lastName}
               onChange={handleChange}
               required
+              type="text"
+              value={formData.lastName}
             />
           </div>
         </div>
@@ -87,10 +101,10 @@ export function LeadForm() {
             <input
               id="email"
               name="email"
-              type="email"
-              value={formData.email}
               onChange={handleChange}
               required
+              type="email"
+              value={formData.email}
             />
           </div>
 
@@ -99,40 +113,44 @@ export function LeadForm() {
             <input
               id="phone"
               name="phone"
-              type="tel"
-              value={formData.phone}
               onChange={handleChange}
               required
+              type="tel"
+              value={formData.phone}
             />
           </div>
         </div>
 
-        <div className="field visually-hidden" aria-hidden="true">
+        <div aria-hidden="true" className="field visually-hidden">
           <label htmlFor="honeypot">Campo nao preencher</label>
           <input
+            autoComplete="off"
             id="honeypot"
             name="honeypot"
-            type="text"
-            tabIndex={-1}
-            autoComplete="off"
-            value={formData.honeypot}
             onChange={handleChange}
+            tabIndex={-1}
+            type="text"
+            value={formData.honeypot}
           />
         </div>
 
         <p className="consent-text">
           Ao enviar este formulario, voce concorda com o uso dos seus dados para
-          contato comercial e comunicacoes relacionadas aos servicos, conforme nossa{" "}
-          <a href="/politica-de-privacidade">Politica de Privacidade</a>.
+          contato comercial e comunicacoes relacionadas aos servicos, conforme
+          nossa <a href="/politica-de-privacidade">Politica de Privacidade</a>.
         </p>
 
         {status.type !== "idle" ? (
-          <p className={`status-message ${status.type === "success" ? "status-success" : "status-error"}`}>
+          <p
+            className={`status-message ${
+              status.type === "success" ? "status-success" : "status-error"
+            }`}
+          >
             {status.message}
           </p>
         ) : null}
 
-        <button className="button-primary" type="submit" disabled={isSubmitting}>
+        <button className="button-primary" disabled={isSubmitting} type="submit">
           {isSubmitting ? "Enviando..." : "Enviar contato"}
         </button>
       </form>

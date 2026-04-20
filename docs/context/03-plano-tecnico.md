@@ -29,7 +29,7 @@ O objetivo do plano tecnico e transformar a arquitetura validada em uma base exe
 
 ## Arquitetura e stack aprovadas
 
-- frontend: `Next.js` + `React` + `Tailwind CSS`
+- frontend: `Next.js` + `React` + `TypeScript` + `Tailwind CSS`
 - backend: `Spring Boot`
 - persistencia: `Spring Data JPA` + `Hibernate` + `PostgreSQL`
 - migrations: `Flyway`
@@ -61,6 +61,7 @@ Responsabilidades:
 - organizar o conteudo comercial
 - enviar formulario para a API
 - exibir estados de carregamento, sucesso e erro
+- concentrar tipagens de UI e contratos do frontend em arquivos reutilizaveis
 
 Dependencias permitidas:
 
@@ -115,6 +116,7 @@ Dependencias permitidas:
 - repositorio unico com pastas `frontend/` e `backend/`
 - documentacao em `docs/context` e `docs/adr`
 - nomes de modulos e pastas em minusculo
+- componentes React em `.tsx` e utilitarios/contratos em `.ts`
 - convencoes HTTP orientadas a recursos
 - migrations SQL em `backend/src/main/resources/db/migration`
 - variaveis por ambiente em arquivos `.env` no frontend e configuracao externa no backend

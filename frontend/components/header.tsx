@@ -1,3 +1,4 @@
+import { ActionLink } from "@/components/ui/action-link";
 import { siteConfig } from "@/lib/site";
 
 const links = [
@@ -14,7 +15,9 @@ export function Header() {
       <div className="container site-header-inner">
         <a className="brand" href="#inicio">
           <span className="brand-title">{siteConfig.businessName}</span>
-          <span className="brand-subtitle">Eventos, material grafico e design</span>
+          <span className="brand-subtitle">
+            Eventos, material grafico e design
+          </span>
         </a>
 
         <nav className="header-nav" aria-label="Navegacao principal">
@@ -25,9 +28,9 @@ export function Header() {
           ))}
         </nav>
 
-        <a className="header-cta" href={siteConfig.whatsappUrl} target="_blank" rel="noreferrer">
+        <ActionLink external href={siteConfig.whatsappUrl}>
           Falar no WhatsApp
-        </a>
+        </ActionLink>
       </div>
     </header>
   );

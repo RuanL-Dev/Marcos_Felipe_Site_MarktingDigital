@@ -12,7 +12,7 @@ O projeto precisa equilibrar impacto visual, produtividade, SEO, formulario simp
 
 Adotar a seguinte stack principal para a V1:
 
-- Next.js com App Router para o frontend institucional
+- Next.js com App Router e TypeScript para o frontend institucional
 - Java + Spring Boot para a API minima de leads
 - Tailwind CSS para a camada visual
 - Spring Data JPA + Hibernate + PostgreSQL para persistencia
@@ -24,6 +24,7 @@ Adotar a seguinte stack principal para a V1:
 ## Consequencias
 
 - O frontend e o backend ficam claramente separados desde a V1.
+- O frontend passa a contar com tipagem estatica e melhor reaproveitamento de componentes.
 - O deploy passa a envolver dois servicos de aplicacao, o que aumenta um pouco a operacao.
 - O backend fica alinhado a preferencia validada do projeto por `Java + Spring Boot`.
 - A persistencia e as regras de lead management ficam desacopladas do frontend.

@@ -1,11 +1,18 @@
-export const siteConfig = {
+import type {
+  PortfolioItem,
+  ServiceItem,
+  SiteConfig,
+  TestimonialItem,
+} from "@/types/site";
+
+export const siteConfig: SiteConfig = {
   businessName: "Marcos Felipe",
   whatsappUrl: "https://wa.me/5500000000000",
   instagramUrl: "https://instagram.com/",
   apiUrl: process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080",
 };
 
-export const services = [
+export const services: ServiceItem[] = [
   {
     id: "decoracao-de-eventos",
     title: "Decoracao de eventos",
@@ -41,7 +48,7 @@ export const services = [
   },
 ];
 
-export const testimonials = [
+export const testimonials: TestimonialItem[] = [
   {
     author: "Cliente de eventos",
     text: "O cuidado com cada detalhe visual fez a entrega parecer maior do que imaginavamos. Ficou marcante e muito bem executado.",
@@ -52,7 +59,7 @@ export const testimonials = [
   },
 ];
 
-export const portfolioItems = [
+export const portfolioItems: PortfolioItem[] = [
   {
     title: "Personagem para comunicacao visual",
     category: "Design grafico",

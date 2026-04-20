@@ -191,7 +191,7 @@ Classificacao:
 
 ### Stack recomendada
 
-- frontend: Next.js com App Router e React
+- frontend: Next.js com App Router, React e TypeScript
 - estilo: Tailwind CSS
 - backend: Java + Spring Boot
 - persistencia: Spring Data JPA + Hibernate + PostgreSQL
@@ -282,6 +282,7 @@ Mitigacao: limitar escopo da API a captura de leads e registrar criterios objeti
 - O frontend nao acessara o banco diretamente.
 - O acesso a dados devera ocorrer por API propria no backend.
 - A API propria da V1 sera implementada com Java + Spring Boot.
+- O frontend institucional passa a adotar TypeScript para melhorar seguranca de tipos e reaproveitamento de componentes.
 - O banco pode ficar no mesmo host da aplicacao por simplicidade e custo, com isolamento logico e sem exposicao publica desnecessaria.
 - O texto de consentimento ficara abaixo dos campos do formulario, com finalidade clara e link para a politica de privacidade.
 - O envio do formulario deve deixar explicita a concordancia com essa politica.

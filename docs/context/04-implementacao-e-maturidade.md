@@ -6,7 +6,7 @@ O projeto saiu da fase exclusivamente documental e agora possui uma base executa
 
 Estrutura implementada:
 
-- `frontend/` em `Next.js`
+- `frontend/` em `Next.js` com migracao em andamento para `TypeScript`
 - `backend/` em `Spring Boot`
 - `docker-compose.yml` para execucao local integrada
 - `docs/` com contexto e ADRs atualizados
@@ -60,6 +60,7 @@ Validacoes executadas:
 - configuracao por ambiente com `.env.example` na raiz e no frontend
 - `Java 17` adotado no backend por compatibilidade local e perfil LTS
 - `Next.js 16.2.4` adotado no frontend para evitar vulnerabilidade conhecida nas versoes anteriores utilizadas nesta implementacao
+- migracao do frontend de `.js` para `.ts/.tsx` iniciada para padronizar tipagem e aumentar reaproveitamento de componentes
 
 ## Decisoes em aberto ou revistas
 
