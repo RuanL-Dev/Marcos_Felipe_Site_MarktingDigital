@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { createLead } from "@/lib/api";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -61,18 +62,25 @@ export function LeadForm() {
   }
 
   return (
-    <div className="form-shell" id="contato">
+    <div
+      className="rounded-[24px] border border-border-soft/80 bg-surface/90 p-6 shadow-[var(--shadow-soft)]"
+      id="contato"
+    >
       <SectionHeader
         eyebrow="Formulario de leads"
         title="Prefere deixar seu contato?"
         description="Preencha os dados abaixo para que o atendimento comercial possa retornar com mais contexto e agilidade."
       />
 
-      <form onSubmit={handleSubmit}>
-        <div className="field-grid">
-          <div className="field">
-            <label htmlFor="firstName">Nome</label>
+      <form className="mt-7 grid gap-4" onSubmit={handleSubmit}>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-2">
+            <label className="text-sm font-semibold" htmlFor="firstName">
+              Nome
+            </label>
             <input
+              autoComplete="given-name"
+              className="min-h-12 rounded-2xl border border-border-soft bg-white px-4 text-base text-ink outline-none transition focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20"
               id="firstName"
               name="firstName"
               onChange={handleChange}
@@ -82,9 +90,13 @@ export function LeadForm() {
             />
           </div>
 
-          <div className="field">
-            <label htmlFor="lastName">Sobrenome</label>
+          <div className="grid gap-2">
+            <label className="text-sm font-semibold" htmlFor="lastName">
+              Sobrenome
+            </label>
             <input
+              autoComplete="family-name"
+              className="min-h-12 rounded-2xl border border-border-soft bg-white px-4 text-base text-ink outline-none transition focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20"
               id="lastName"
               name="lastName"
               onChange={handleChange}
@@ -95,10 +107,14 @@ export function LeadForm() {
           </div>
         </div>
 
-        <div className="field-grid">
-          <div className="field">
-            <label htmlFor="email">E-mail</label>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-2">
+            <label className="text-sm font-semibold" htmlFor="email">
+              E-mail
+            </label>
             <input
+              autoComplete="email"
+              className="min-h-12 rounded-2xl border border-border-soft bg-white px-4 text-base text-ink outline-none transition focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20"
               id="email"
               name="email"
               onChange={handleChange}
@@ -108,10 +124,15 @@ export function LeadForm() {
             />
           </div>
 
-          <div className="field">
-            <label htmlFor="phone">Telefone</label>
+          <div className="grid gap-2">
+            <label className="text-sm font-semibold" htmlFor="phone">
+              Telefone
+            </label>
             <input
+              autoComplete="tel"
+              className="min-h-12 rounded-2xl border border-border-soft bg-white px-4 text-base text-ink outline-none transition focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20"
               id="phone"
+              inputMode="tel"
               name="phone"
               onChange={handleChange}
               required
@@ -121,7 +142,7 @@ export function LeadForm() {
           </div>
         </div>
 
-        <div aria-hidden="true" className="field visually-hidden">
+        <div aria-hidden="true" className="sr-only">
           <label htmlFor="honeypot">Campo nao preencher</label>
           <input
             autoComplete="off"
@@ -134,23 +155,35 @@ export function LeadForm() {
           />
         </div>
 
-        <p className="consent-text">
-          Ao enviar este formulario, voce concorda com o uso dos seus dados para
-          contato comercial e comunicacoes relacionadas aos servicos, conforme
-          nossa <a href="/politica-de-privacidade">Politica de Privacidade</a>.
+        <p className="rounded-2xl border border-border-soft/70 bg-surface-strong/55 px-4 py-3 text-sm leading-6 text-muted">
+          Ao clicar em "Enviar contato" voce concorda com a{" "}
+          <Link
+            className="font-semibold text-accent underline underline-offset-4 transition hover:text-accent-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+            href="/politica-de-privacidade"
+          >
+            Politica de Privacidade
+          </Link>
+          , onde descrevemos como sao tratados os dados enviados por voce.
         </p>
 
         {status.type !== "idle" ? (
           <p
-            className={`status-message ${
-              status.type === "success" ? "status-success" : "status-error"
+            aria-live="polite"
+            className={`rounded-2xl px-4 py-3 text-sm ${
+              status.type === "success"
+                ? "bg-success/12 text-success"
+                : "bg-danger/12 text-danger"
             }`}
           >
             {status.message}
           </p>
         ) : null}
 
-        <button className="button-primary" disabled={isSubmitting} type="submit">
+        <button
+          className="inline-flex min-h-12 items-center justify-center rounded-full border border-transparent bg-accent px-5 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition hover:bg-accent-strong disabled:cursor-not-allowed disabled:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+          disabled={isSubmitting}
+          type="submit"
+        >
           {isSubmitting ? "Enviando..." : "Enviar contato"}
         </button>
       </form>

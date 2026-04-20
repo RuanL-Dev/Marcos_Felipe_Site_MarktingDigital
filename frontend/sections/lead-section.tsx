@@ -5,8 +5,8 @@ import { siteConfig } from "@/lib/site";
 
 export function LeadSection() {
   return (
-    <section className="section">
-      <div className="container lead-layout">
+    <section className="px-4 py-14 sm:px-6">
+      <div className="mx-auto grid w-full max-w-7xl gap-6 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
           <SectionHeader
             eyebrow="Contato alternativo"
@@ -14,7 +14,7 @@ export function LeadSection() {
             description="Se preferir atendimento imediato, o melhor caminho e chamar no WhatsApp. Se quiser deixar seus dados para retorno posterior, use o formulario ao lado."
           />
 
-          <div className="cta-actions">
+          <div className="mt-7 flex flex-wrap gap-3 max-sm:flex-col">
             <ActionLink external href={siteConfig.whatsappUrl}>
               Abrir WhatsApp Business
             </ActionLink>

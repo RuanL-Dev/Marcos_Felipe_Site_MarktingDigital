@@ -6,9 +6,11 @@ interface TestimonialCardProps {
 
 export function TestimonialCard({ testimonial }: TestimonialCardProps) {
   return (
-    <article className="testimonial-card">
-      <p>"{testimonial.text}"</p>
-      <strong>{testimonial.author}</strong>
+    <article className="rounded-[24px] border border-border-soft/80 bg-surface/90 p-6 shadow-[var(--shadow-soft)]">
+      <p className="text-base leading-7 text-muted">"{testimonial.text}"</p>
+      <strong className="mt-5 block text-base font-semibold text-ink">
+        {testimonial.author}
+      </strong>
     </article>
   );
 }

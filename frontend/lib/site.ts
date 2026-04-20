@@ -7,8 +7,8 @@ import type {
 
 export const siteConfig: SiteConfig = {
   businessName: "Marcos Felipe",
-  whatsappUrl: "https://wa.me/5500000000000",
-  instagramUrl: "https://instagram.com/",
+  whatsappUrl: process.env.NEXT_PUBLIC_WHATSAPP_URL?.trim() || "#contato",
+  instagramUrl: process.env.NEXT_PUBLIC_INSTAGRAM_URL?.trim() || "#contato",
   apiUrl: process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080",
 };
 

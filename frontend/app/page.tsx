@@ -10,7 +10,7 @@ import { TestimonialsSection } from "@/sections/testimonials-section";
 
 export default function HomePage() {
   return (
-    <main className="page-shell">
+    <main className="min-h-screen">
       <Header />
       <HeroSection />
       <ServicesSection />
